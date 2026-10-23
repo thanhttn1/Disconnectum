@@ -1,0 +1,12 @@
+{
+  "required": false,
+  "minVersion": "0.8.5",
+  "package": "me.thanhtnt2.disconnectum.optimization.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "ServerKeepAliveMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

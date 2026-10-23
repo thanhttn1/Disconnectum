@@ -1,0 +1,40 @@
+{
+  "disconnectum.configuration.title": "Disconnectum Configs",
+  "disconnectum.configuration.section.disconnectum.common.toml": "Disconnectum Configs",
+  "disconnectum.configuration.section.disconnectum.common.toml.title": "Disconnectum Configs",
+
+  "disconnectum.configuration.enabled": "Enabled",
+  "disconnectum.configuration.logTransitions": "Log Overload Changes",
+
+  "disconnectum.configuration.monitor": "Load Monitor",
+  "disconnectum.configuration.monitor.title": "Load Monitor",
+  "disconnectum.configuration.enterTickMillis": "Overload Tick Time (ms)",
+  "disconnectum.configuration.exitTickMillis": "Recovered Tick Time (ms)",
+  "disconnectum.configuration.enterLagMillis": "Overload Lag (ms)",
+  "disconnectum.configuration.exitLagMillis": "Recovered Lag (ms)",
+  "disconnectum.configuration.smoothingFactor": "Smoothing Factor",
+  "disconnectum.configuration.spikeTickMillis": "Spike Tick Time (ms)",
+  "disconnectum.configuration.recoveryTicks": "Calm Ticks To Recover",
+  "disconnectum.configuration.minThrottleMillis": "Minimum Throttle Time (ms)",
+  "disconnectum.configuration.lagSampleCapMillis": "Lag Sample Cap (ms)",
+  "disconnectum.configuration.startupGraceSeconds": "Startup Grace (seconds)",
+
+  "disconnectum.configuration.chunky": "Chunky",
+  "disconnectum.configuration.chunky.title": "Chunky",
+  "disconnectum.configuration.pauseWhenOverloaded": "Pause When Overloaded",
+  "disconnectum.configuration.maxWorkingCount": "Max Simultaneous Chunks",
+
+  "disconnectum.configuration.threads": "Worker Threads",
+  "disconnectum.configuration.threads.title": "Worker Threads",
+  "disconnectum.configuration.lowerWorkerPriority": "Lower Worker Priority",
+  "disconnectum.configuration.workerPriority": "Worker Priority",
+  "disconnectum.configuration.scanIntervalTicks": "Scan Interval (ticks)",
+  "disconnectum.configuration.threadNamePrefixes": "Thread Name Prefixes",
+
+  "disconnectum.configuration.keepAlive": "Keep-Alive Guard",
+  "disconnectum.configuration.keepAlive.title": "Keep-Alive Guard",
+  "disconnectum.configuration.forgiveSingleplayerOwner": "Forgive Singleplayer Owner",
+  "disconnectum.configuration.forgiveServerStalls": "Forgive Server Stalls",
+  "disconnectum.configuration.serverStallMillis": "Server Stall Time (ms)",
+  "disconnectum.configuration.clientFastReply": "Fast Client Reply"
+}

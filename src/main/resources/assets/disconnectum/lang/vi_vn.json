@@ -1,0 +1,40 @@
+{
+  "disconnectum.configuration.title": "Cấu hình Disconnectum",
+  "disconnectum.configuration.section.disconnectum.common.toml": "Cấu hình Disconnectum",
+  "disconnectum.configuration.section.disconnectum.common.toml.title": "Cấu hình Disconnectum",
+
+  "disconnectum.configuration.enabled": "Bật mod",
+  "disconnectum.configuration.logTransitions": "Ghi log khi quá tải",
+
+  "disconnectum.configuration.monitor": "Giám sát tải",
+  "disconnectum.configuration.monitor.title": "Giám sát tải",
+  "disconnectum.configuration.enterTickMillis": "Tick quá tải (ms)",
+  "disconnectum.configuration.exitTickMillis": "Tick đã ổn (ms)",
+  "disconnectum.configuration.enterLagMillis": "Độ trễ quá tải (ms)",
+  "disconnectum.configuration.exitLagMillis": "Độ trễ đã ổn (ms)",
+  "disconnectum.configuration.smoothingFactor": "Hệ số làm mượt",
+  "disconnectum.configuration.spikeTickMillis": "Tick đột biến (ms)",
+  "disconnectum.configuration.recoveryTicks": "Số tick ổn để hồi phục",
+  "disconnectum.configuration.minThrottleMillis": "Thời gian tạm dừng tối thiểu (ms)",
+  "disconnectum.configuration.lagSampleCapMillis": "Giới hạn mẫu độ trễ (ms)",
+  "disconnectum.configuration.startupGraceSeconds": "Thời gian chờ khi vào thế giới (giây)",
+
+  "disconnectum.configuration.chunky": "Chunky",
+  "disconnectum.configuration.chunky.title": "Chunky",
+  "disconnectum.configuration.pauseWhenOverloaded": "Tạm dừng khi quá tải",
+  "disconnectum.configuration.maxWorkingCount": "Số chunk xử lý đồng thời tối đa",
+
+  "disconnectum.configuration.threads": "Luồng nền",
+  "disconnectum.configuration.threads.title": "Luồng nền",
+  "disconnectum.configuration.lowerWorkerPriority": "Hạ ưu tiên luồng nền",
+  "disconnectum.configuration.workerPriority": "Mức ưu tiên luồng nền",
+  "disconnectum.configuration.scanIntervalTicks": "Chu kỳ quét (tick)",
+  "disconnectum.configuration.threadNamePrefixes": "Tiền tố tên luồng",
+
+  "disconnectum.configuration.keepAlive": "Bảo vệ keep-alive",
+  "disconnectum.configuration.keepAlive.title": "Bảo vệ keep-alive",
+  "disconnectum.configuration.forgiveSingleplayerOwner": "Bỏ qua timeout cho chủ thế giới",
+  "disconnectum.configuration.forgiveServerStalls": "Bỏ qua timeout khi server đứng",
+  "disconnectum.configuration.serverStallMillis": "Thời gian server đứng (ms)",
+  "disconnectum.configuration.clientFastReply": "Phản hồi nhanh phía client"
+}
