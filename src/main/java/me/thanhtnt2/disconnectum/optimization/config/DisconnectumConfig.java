@@ -37,7 +37,10 @@ public final class DisconnectumConfig {
     private static final ModConfigSpec.IntValue STARTUP_GRACE_SECONDS;
 
     // ---- chunky ----
-    private static final ModConfigSpec.BooleanValue CHUNKY_PAUSE_WHEN_OVERLOADED;
+    private static final ModConfigSpec.EnumValue<ChunkyMode> CHUNKY_MODE;
+    private static final ModConfigSpec.IntValue CHUNKY_WARN_AFTER_SECONDS;
+    private static final ModConfigSpec.IntValue CHUNKY_WARN_REPEAT_SECONDS;
+    private static final ModConfigSpec.IntValue CHUNKY_IGNORE_MINUTES;
     private static final ModConfigSpec.IntValue CHUNKY_MAX_WORKING_COUNT;
 
     // ---- threads ----
@@ -86,17 +89,29 @@ public final class DisconnectumConfig {
                         "They are almost always the game being paused, not real load. Long ticks are still caught by spikeTickMillis.")
                 .defineInRange("lagSampleCapMillis", 2000, 100, 60000);
         STARTUP_GRACE_SECONDS = BUILDER
-                .comment("Treat the server as overloaded for this many seconds after it starts, so Chunky and other",
-                        "background jobs wait until the world has finished loading. 0 disables the grace period.")
-                .defineInRange("startupGraceSeconds", 30, 0, 600);
+                .comment("Treat the server as overloaded for this many seconds after it starts. Only useful together with",
+                        "chunky.mode = AUTO, so auto-resumed Chunky tasks wait for the world to settle. 0 disables it.")
+                .defineInRange("startupGraceSeconds", 0, 0, 600);
         BUILDER.pop();
 
         BUILDER.comment("Integration with the Chunky pre-generator (optional dependency).")
                 .push("chunky");
-        CHUNKY_PAUSE_WHEN_OVERLOADED = BUILDER
-                .comment("Pause running Chunky tasks while the server is overloaded and continue them afterwards.",
-                        "Progress is kept by Chunky, nothing is cancelled.")
-                .define("pauseWhenOverloaded", true);
+        CHUNKY_MODE = BUILDER
+                .comment("ASK  = never touch Chunky by itself; show a clickable warning (continue or stop) when it runs",
+                        "      while the server is overloaded.",
+                        "AUTO = pause Chunky automatically while overloaded and continue it afterwards.",
+                        "OFF  = leave Chunky alone.")
+                .defineEnum("mode", ChunkyMode.ASK);
+        CHUNKY_WARN_AFTER_SECONDS = BUILDER
+                .comment("ASK mode: the server must stay overloaded this long (seconds) before the warning appears.",
+                        "Keeps short hiccups, for example right after joining a world, from nagging you.")
+                .defineInRange("warnAfterSeconds", 10, 0, 600);
+        CHUNKY_WARN_REPEAT_SECONDS = BUILDER
+                .comment("ASK mode: minimum time (seconds) between two warnings.")
+                .defineInRange("warnRepeatSeconds", 90, 10, 3600);
+        CHUNKY_IGNORE_MINUTES = BUILDER
+                .comment("Minutes without warnings or automatic pausing after you choose 'Continue Chunky'.")
+                .defineInRange("ignoreMinutes", 10, 1, 240);
         CHUNKY_MAX_WORKING_COUNT = BUILDER
                 .comment("Maximum number of chunks Chunky requests at the same time (Chunky's own default is 50).",
                         "Applied through the 'chunky.maxWorkingCount' system property only if you have not set it yourself.",
@@ -165,6 +180,39 @@ public final class DisconnectumConfig {
         current = buildSettings();
     }
 
+    /**
+     * Writes a preset into the config file and applies it immediately.
+     *
+     * @throws IllegalStateException when the config file is not loaded yet
+     */
+    public static void applyPreset(ConfigPreset preset) {
+        ConfigPreset.Values values = preset.settings();
+        ENABLED.set(values.enabled());
+        ENTER_TICK_MILLIS.set(values.enterTickMillis());
+        EXIT_TICK_MILLIS.set(values.exitTickMillis());
+        ENTER_LAG_MILLIS.set(values.enterLagMillis());
+        EXIT_LAG_MILLIS.set(values.exitLagMillis());
+        SPIKE_TICK_MILLIS.set(values.spikeTickMillis());
+        STARTUP_GRACE_SECONDS.set(values.startupGraceSeconds());
+        CHUNKY_MODE.set(values.chunkyMode());
+        CHUNKY_MAX_WORKING_COUNT.set(values.chunkyMaxWorkingCount());
+        THREADS_PRIORITY.set(values.workerPriority());
+        KEEP_ALIVE_STALL_MILLIS.set(values.serverStallMillis());
+        SPEC.save();
+        current = buildSettings();
+    }
+
+    /**
+     * Changes only the Chunky mode and applies it immediately.
+     *
+     * @throws IllegalStateException when the config file is not loaded yet
+     */
+    public static void setChunkyMode(ChunkyMode mode) {
+        CHUNKY_MODE.set(mode);
+        SPEC.save();
+        current = buildSettings();
+    }
+
     private static Settings buildSettings() {
         Monitor monitor = new Monitor(
                 read(ENTER_TICK_MILLIS), read(EXIT_TICK_MILLIS),
@@ -172,7 +220,8 @@ public final class DisconnectumConfig {
                 read(SMOOTHING_FACTOR), read(SPIKE_TICK_MILLIS),
                 read(RECOVERY_TICKS), read(MIN_THROTTLE_MILLIS),
                 read(LAG_SAMPLE_CAP_MILLIS), read(STARTUP_GRACE_SECONDS));
-        Chunky chunky = new Chunky(read(CHUNKY_PAUSE_WHEN_OVERLOADED), read(CHUNKY_MAX_WORKING_COUNT));
+        Chunky chunky = new Chunky(read(CHUNKY_MODE), read(CHUNKY_WARN_AFTER_SECONDS),
+                read(CHUNKY_WARN_REPEAT_SECONDS), read(CHUNKY_IGNORE_MINUTES), read(CHUNKY_MAX_WORKING_COUNT));
         Threads threads = new Threads(
                 read(THREADS_ENABLED), read(THREADS_PRIORITY), read(THREADS_SCAN_INTERVAL_TICKS),
                 List.copyOf(read(THREADS_NAME_PREFIXES)));
@@ -199,7 +248,8 @@ public final class DisconnectumConfig {
                           int lagSampleCapMillis, int startupGraceSeconds) {
     }
 
-    public record Chunky(boolean pauseWhenOverloaded, int maxWorkingCount) {
+    public record Chunky(ChunkyMode mode, int warnAfterSeconds, int warnRepeatSeconds,
+                         int ignoreMinutes, int maxWorkingCount) {
     }
 
     public record Threads(boolean enabled, int workerPriority, int scanIntervalTicks, List<String> namePrefixes) {

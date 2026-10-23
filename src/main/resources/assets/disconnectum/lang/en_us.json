@@ -2,10 +2,8 @@
   "disconnectum.configuration.title": "Disconnectum Configs",
   "disconnectum.configuration.section.disconnectum.common.toml": "Disconnectum Configs",
   "disconnectum.configuration.section.disconnectum.common.toml.title": "Disconnectum Configs",
-
   "disconnectum.configuration.enabled": "Enabled",
   "disconnectum.configuration.logTransitions": "Log Overload Changes",
-
   "disconnectum.configuration.monitor": "Load Monitor",
   "disconnectum.configuration.monitor.title": "Load Monitor",
   "disconnectum.configuration.enterTickMillis": "Overload Tick Time (ms)",
@@ -18,23 +16,34 @@
   "disconnectum.configuration.minThrottleMillis": "Minimum Throttle Time (ms)",
   "disconnectum.configuration.lagSampleCapMillis": "Lag Sample Cap (ms)",
   "disconnectum.configuration.startupGraceSeconds": "Startup Grace (seconds)",
-
   "disconnectum.configuration.chunky": "Chunky",
   "disconnectum.configuration.chunky.title": "Chunky",
-  "disconnectum.configuration.pauseWhenOverloaded": "Pause When Overloaded",
   "disconnectum.configuration.maxWorkingCount": "Max Simultaneous Chunks",
-
   "disconnectum.configuration.threads": "Worker Threads",
   "disconnectum.configuration.threads.title": "Worker Threads",
   "disconnectum.configuration.lowerWorkerPriority": "Lower Worker Priority",
   "disconnectum.configuration.workerPriority": "Worker Priority",
   "disconnectum.configuration.scanIntervalTicks": "Scan Interval (ticks)",
   "disconnectum.configuration.threadNamePrefixes": "Thread Name Prefixes",
-
   "disconnectum.configuration.keepAlive": "Keep-Alive Guard",
   "disconnectum.configuration.keepAlive.title": "Keep-Alive Guard",
   "disconnectum.configuration.forgiveSingleplayerOwner": "Forgive Singleplayer Owner",
   "disconnectum.configuration.forgiveServerStalls": "Forgive Server Stalls",
   "disconnectum.configuration.serverStallMillis": "Server Stall Time (ms)",
-  "disconnectum.configuration.clientFastReply": "Fast Client Reply"
+  "disconnectum.configuration.clientFastReply": "Fast Client Reply",
+  "disconnectum.configuration.mode": "Chunky Mode",
+  "disconnectum.configuration.warnAfterSeconds": "Warn After Overload (seconds)",
+  "disconnectum.configuration.warnRepeatSeconds": "Warning Interval (seconds)",
+  "disconnectum.configuration.ignoreMinutes": "Mute After Continue (minutes)",
+  "disconnectum.chunky.warning": "[Disconnectum] The server is overloaded (tick %s ms). Running Chunky now risks a \"server disconnected\" crash.",
+  "disconnectum.chunky.continue": "[Continue Chunky]",
+  "disconnectum.chunky.continue.hover": "High risk. Keep Chunky running and stand still so no new chunks load. Warnings are muted for %s minutes.",
+  "disconnectum.chunky.stop": "[Stop Chunky]",
+  "disconnectum.chunky.stop.hover": "Pause Chunky now. Disconnectum continues it when the server recovers, or use /disconnectum chunky continue.",
+  "disconnectum.command.continue": "Chunky keeps running. Disconnectum stays quiet for %s minutes. Stand still to avoid loading more chunks.",
+  "disconnectum.command.stop": "Paused %s Chunky task(s). Disconnectum continues them when the server recovers, or run /disconnectum chunky continue.",
+  "disconnectum.command.mode": "Chunky mode is now %s (saved to the config file, no restart needed).",
+  "disconnectum.command.preset": "Preset '%s' applied and saved. It takes effect immediately.",
+  "disconnectum.command.restart": "Restart the game for the Chunky limit of %s simultaneous chunks to take effect.",
+  "disconnectum.command.failed": "The Disconnectum config is not loaded yet; try again in a moment."
 }

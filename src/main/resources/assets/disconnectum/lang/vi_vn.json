@@ -2,10 +2,8 @@
   "disconnectum.configuration.title": "Cấu hình Disconnectum",
   "disconnectum.configuration.section.disconnectum.common.toml": "Cấu hình Disconnectum",
   "disconnectum.configuration.section.disconnectum.common.toml.title": "Cấu hình Disconnectum",
-
   "disconnectum.configuration.enabled": "Bật mod",
   "disconnectum.configuration.logTransitions": "Ghi log khi quá tải",
-
   "disconnectum.configuration.monitor": "Giám sát tải",
   "disconnectum.configuration.monitor.title": "Giám sát tải",
   "disconnectum.configuration.enterTickMillis": "Tick quá tải (ms)",
@@ -18,23 +16,34 @@
   "disconnectum.configuration.minThrottleMillis": "Thời gian tạm dừng tối thiểu (ms)",
   "disconnectum.configuration.lagSampleCapMillis": "Giới hạn mẫu độ trễ (ms)",
   "disconnectum.configuration.startupGraceSeconds": "Thời gian chờ khi vào thế giới (giây)",
-
   "disconnectum.configuration.chunky": "Chunky",
   "disconnectum.configuration.chunky.title": "Chunky",
-  "disconnectum.configuration.pauseWhenOverloaded": "Tạm dừng khi quá tải",
   "disconnectum.configuration.maxWorkingCount": "Số chunk xử lý đồng thời tối đa",
-
   "disconnectum.configuration.threads": "Luồng nền",
   "disconnectum.configuration.threads.title": "Luồng nền",
   "disconnectum.configuration.lowerWorkerPriority": "Hạ ưu tiên luồng nền",
   "disconnectum.configuration.workerPriority": "Mức ưu tiên luồng nền",
   "disconnectum.configuration.scanIntervalTicks": "Chu kỳ quét (tick)",
   "disconnectum.configuration.threadNamePrefixes": "Tiền tố tên luồng",
-
   "disconnectum.configuration.keepAlive": "Bảo vệ keep-alive",
   "disconnectum.configuration.keepAlive.title": "Bảo vệ keep-alive",
   "disconnectum.configuration.forgiveSingleplayerOwner": "Bỏ qua timeout cho chủ thế giới",
   "disconnectum.configuration.forgiveServerStalls": "Bỏ qua timeout khi server đứng",
   "disconnectum.configuration.serverStallMillis": "Thời gian server đứng (ms)",
-  "disconnectum.configuration.clientFastReply": "Phản hồi nhanh phía client"
+  "disconnectum.configuration.clientFastReply": "Phản hồi nhanh phía client",
+  "disconnectum.configuration.mode": "Chế độ Chunky",
+  "disconnectum.configuration.warnAfterSeconds": "Cảnh báo sau khi quá tải (giây)",
+  "disconnectum.configuration.warnRepeatSeconds": "Khoảng cách giữa các cảnh báo (giây)",
+  "disconnectum.configuration.ignoreMinutes": "Im lặng sau khi chọn Tiếp tục (phút)",
+  "disconnectum.chunky.warning": "[Disconnectum] Server đang quá tải (tick %s ms). Chạy Chunky lúc này có nguy cơ bị \"server disconnected\".",
+  "disconnectum.chunky.continue": "[Tiếp tục Chunky]",
+  "disconnectum.chunky.continue.hover": "Rủi ro cao. Chunky tiếp tục chạy, hãy đứng yên để không load thêm chunk. Tắt cảnh báo trong %s phút.",
+  "disconnectum.chunky.stop": "[Dừng Chunky]",
+  "disconnectum.chunky.stop.hover": "Tạm dừng Chunky ngay. Disconnectum sẽ chạy tiếp khi server ổn, hoặc dùng /disconnectum chunky continue.",
+  "disconnectum.command.continue": "Chunky tiếp tục chạy. Disconnectum im lặng trong %s phút. Hãy đứng yên để tránh load thêm chunk.",
+  "disconnectum.command.stop": "Đã tạm dừng %s tác vụ Chunky. Disconnectum sẽ chạy tiếp khi server ổn, hoặc dùng /disconnectum chunky continue.",
+  "disconnectum.command.mode": "Chế độ Chunky giờ là %s (đã lưu vào file config, không cần khởi động lại).",
+  "disconnectum.command.preset": "Đã áp dụng và lưu preset '%s'. Có hiệu lực ngay.",
+  "disconnectum.command.restart": "Cần khởi động lại game để giới hạn %s chunk đồng thời của Chunky có hiệu lực.",
+  "disconnectum.command.failed": "Config của Disconnectum chưa nạp xong, hãy thử lại sau giây lát."
 }

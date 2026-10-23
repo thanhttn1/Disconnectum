@@ -1,7 +1,6 @@
 modLoader="javafml"
 loaderVersion="${loader_version_range}"
 license="${mod_license}"
-issueTrackerURL="https://github.com/thanhtnt2/disconnectum/issues"
 
 [[mods]]
 modId="${mod_id}"
@@ -9,23 +8,11 @@ version="${mod_version}"
 displayName="${mod_name}"
 authors="thanhtnt2"
 description='''
-An optimization mod for singleplayer (and LAN hosting) that fixes the "server disconnected" / "Timed out" problem in very large modpacks.
+An optimization mod for singleplayer that prevents the "server disconnected" problem in heavy modpacks.
 
 Một mod tối ưu dành cho chơi đơn khi gặp hiện tượng "server disconnected".
 
-What it does
-- Watches the server tick and, while the server is overloaded, pauses Chunky and continues it afterwards.
-- Lowers the priority of background worker threads so the server and render threads get the CPU first.
-- Postpones vanilla keep-alive timeouts that are caused by lag, never by a real network failure.
-- Optional: answers keep-alive packets from the network thread when you play on remote servers.
-
-Configuration notes (config/disconnectum-common.toml)
-- ModernFix: keep "perf.suspend_integrated_server_during_load" enabled. It delays integrated-server ticks until you have joined and complements Disconnectum's startup grace period.
-- Chunky: Disconnectum sets the JVM property chunky.maxWorkingCount to the value in the "chunky" section. If you pass your own -Dchunky.maxWorkingCount in the launcher, yours wins and ours is skipped.
-- FerriteCore, Sodium/Embeddium, EntityCulling, Flerovium, Gnetum, ImmediatelyFast, Saturn, AllTheLeaks: no overlap, nothing to turn off.
-- If another mod you use also changes thread priorities or keep-alive timeouts, disable the matching section ("threads" or "keepAlive") here to avoid doing the same work twice.
-
-Disconnectum cannot fix crashes caused by other mods (for example a worldgen exception). It only prevents lag from turning into a disconnect.
+Details, commands and compatibility notes: see the README.
 '''
 
 [[mixins]]

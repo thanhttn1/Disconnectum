@@ -12,7 +12,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 /**
  * Postpones vanilla's keep-alive timeout when it is caused by lag instead of a dead connection.
  *
- * <p>Deliberately a single {@code HEAD} inject that only adjusts a timestamp: it never cancels, redirects or
+ * <p>The method is called {@code keepConnectionAlive} in the 1.21.1 Mojang mappings; the older name is kept as a
+ * fallback so the hook survives a rename. Deliberately a single {@code HEAD} inject that only adjusts a timestamp: it never cancels, redirects or
  * overwrites anything, so it stacks with other mods touching the same method. The decision lives in
  * {@link KeepAliveGuard}; this class is only the hook.
  */
@@ -28,7 +29,7 @@ public abstract class ServerKeepAliveMixin {
     @Shadow
     protected abstract boolean isSingleplayerOwner();
 
-    @Inject(method = "keepConnection", at = @At("HEAD"))
+    @Inject(method = {"keepConnectionAlive", "keepConnection"}, at = @At("HEAD"))
     private void disconnectum$postponeLagTimeout(CallbackInfo callbackInfo) {
         if (!keepAlivePending) {
             return;
